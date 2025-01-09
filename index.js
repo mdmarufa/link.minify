@@ -15,7 +15,7 @@ const app = express();
 // Connect to MongoDB
 (async () => {
   try {
-    await mongoose.connect(process.env.DBConnectURL+"linkMinify");
+    await mongoose.connect(process.env.DBConnectURL);
     console.log("DB Connected");
   } catch (err) { 
     console.log("! DB Connection error", err);
@@ -25,11 +25,8 @@ const app = express();
 app.use(express.json())
 app.use(cookieParser())
 
+app.use(cors());
 
-app.use(cors({
-  credentials: true,
-  origin: "http://localhost:5173"
-}));
 
 
 
