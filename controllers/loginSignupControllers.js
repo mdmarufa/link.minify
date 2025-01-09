@@ -39,8 +39,9 @@ loginSignupScaffolding.signup = async (req, res, next) => {
 loginSignupScaffolding.login = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({email: req.body.email})
+    console.log(user);
     if(user) {
-      const userDoc = {...user._doc};
+      const userDoc = user;
       const isPasswordValid = await bcrypt.compare(req.body.password, userDoc.password)
       if(isPasswordValid) {
         //create jwt token
